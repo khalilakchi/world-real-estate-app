@@ -1,2 +1,9 @@
-volumes:
-  - ./data:/app/data
+services:
+  app:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data  # Ton dossier local 'data' est monté dans '/app/data'
+    environment:
+      - DATA_PATH=/app/data/raw/global_housing_market_extended.csv
