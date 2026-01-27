@@ -1,28 +1,38 @@
 import streamlit as st
-import pandas as pd
+import plotly.express as px
+import logging
 from src.data_loader import load_real_estate_data
-from src.analytics import get_country_stats
 
-st.title("🏠 Analyse de l'Immobilier Mondial")
+# 1. Configuration de la page
+st.set_page_config(page_title="Immo Global Dashboard", layout="wide")
+logging.basicConfig(level=logging.INFO)
 
-# Chargement des données via le module de l'Étudiant 1
-df = load_real_estate_data("data/raw/global_housing_market_extended.csv")
-
-if df is not None:
-    st.success("Données chargées avec succès !")
+def main():
+    st.title("🏠 Analyse du Marché Immobilier")
     
-    # Sélecteur de pays
-    countries = df['Country'].unique()
-    selected_country = st.selectbox("Choisissez un pays", countries)
+    # 2. Chargement des données
+    path = "data/raw/global_housing_market_extended.csv"
+    df = load_real_estate_data(path)
     
-    # Affichage des stats via la fonction de l'Étudiant 1
-    stats = get_country_stats(df, selected_country)
-    
-    if "error" not in stats:
-        col1, col2 = st.columns(2)
-        col1.metric("Prix Moyen Index", stats['avg_house_price_index'])
-        col2.metric("Croissance GDP", f"{stats['latest_gdp_growth']}%")
+    if df is not None:
+        logging.info("Données chargées pour l'interface")
+        
+        # 3. Sidebar pour les filtres
+        st.sidebar.header("Filtres")
+        country_list = df['Country'].unique()
+        selected_country = st.sidebar.selectbox("Sélectionnez un pays", country_list)
+        
+        # 4. Graphique interactif
+        st.subheader(f"Évolution des prix : {selected_country}")
+        country_df = df[df['Country'] == selected_country]
+        
+        fig = px.line(country_df, x='Year', y='House Price Index', 
+                     title=f"Indice des prix à travers le temps ({selected_country})",
+                     markers=True)
+        st.plotly_chart(fig, use_container_width=True)
+        
     else:
-        st.error(stats["error"])
-else:
-    st.error("Impossible de charger les données. Vérifiez le dossier data/raw/")
+        st.error(f"Fichier introuvable : {path}. Veuillez le placer dans data/raw/")
+
+if __name__ == "__main__":
+    main()
