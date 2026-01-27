@@ -1,4 +1,12 @@
+# --- Interface et Visualisation ---
+streamlit>=1.30.0
+plotly>=5.18.0
+
+# --- Analyse de données ---
 pandas>=2.0.0
 numpy<2.0.0
 openpyxl>=3.0.0
+
+# --- Utilitaires et Tests ---
 requests>=2.31.0
+pytest>=7.0.0
