@@ -1,5 +1,6 @@
 # Ignore raw data only (keep structure)
-data/raw/
+data/raw/*
+!data/raw/.gitkeep
 
 # Python cache
 __pycache__/
