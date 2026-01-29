@@ -3,6 +3,7 @@ import plotly.express as px
 import logging
 import numpy as np
 import pandas as pd
+import os
 # Import local modules 
 from src.data_loader import load_real_estate_data
 from src.analytics import get_country_stats, get_top_growth_countries
@@ -16,7 +17,8 @@ def main():
     st.title("🏠 World Real Estate Market Analyzer")
     
     # 2. Data and API Loading
-    path = "data/raw/global_housing_market_extended.csv"
+   
+    path = os.getenv("DATA_PATH", "data/processed/global_housing_processed.csv")
     df = load_real_estate_data(path)
     rates = get_usd_exchange_rates()
     
