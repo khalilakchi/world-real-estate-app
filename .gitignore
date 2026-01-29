@@ -1,11 +1,12 @@
-# Ignore the data folder (keep data local)
-data/
+# Ignore raw data only (keep structure)
+data/raw/*
+!data/raw/.gitkeep
 
-# Ignore Python cache files
+# Python cache
 __pycache__/
 *.pyc
 
-# Ignore environment variables (security)
+# Env & venv
 .env
 .venv/
 env/
