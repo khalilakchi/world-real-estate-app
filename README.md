@@ -1,61 +1,72 @@
 # 🌍 World Real Estate Analyzer
 
-**M2 Software - 2025-2026 Group Members: [Rim Bouaouiss], [Khalil Akchi], [Student 2 Name]
-
+**M2 Software - 2025-2026 Group Members: [Rim Bouaouiss], [Khalil Akchi], [Sofiane Boucenna]
+GitHub Repository: https://github.com/khalilakchi/world-real-estate-app
 ## 🎯 Overview
 This is a global real estate market analysis application built with Python, Pandas, and Streamlit. The project features live REST API integration for exchange rates and is fully containerized using Docker
 
+# 🛠️ Core Technologies: 
+- Backend: Python 3.11+
+- Data Processing: Pandas & NumPy
+- Interface: Streamlit & Plotly
+- Testing: Pytest
+- Containerization: Docker & Docker Compose
 
-### Via Docker (Recommandé)
-1. Assurez-vous d'avoir Docker installé.
-2. Lancez l'application :
+# 🚀 Installation and Setup
+
+### Via Docker 
+1. Ensure you have Docker Desktop installed and running.
+2. Launch the application using the following command:
 ```bash
 docker-compose up --build
-Access the interactive dashboard at: http://localhost:8501.
+```
+3. Access the interactive dashboard at: http://localhost:8501.
 
 
 ## Via Local Python Environment**
 
-Create a virtual environment: python -m venv venv && source venv/bin/activate.
-
-Install dependencies:
-
-Bash
-pip install -r requirements.txt
-Run the dashboard:
-
-Bash
-streamlit run app/streamlit_app.py
-🧪 Quality Testing
-
-We use pytest to ensure the reliability of our analytical calculations.
-
-#### Run the Tests
-
-To execute the unit test suite, ensure you are in your virtual environment and run:
-
-Bash
-python -m pytest
-
-
-
-## 🧪 Tests de Qualité
-Nous utilisons `pytest` pour garantir la fiabilité de nos calculs analytiques.
-
-### Lancer les tests
-Pour exécuter la suite de tests unitaires, assurez-vous d'être dans l'environnement virtuel et lancez :
+1. Create a virtual environment: 
 ```bash
-python -m pytest
+python -m venv venv && source venv/bin/activate.
+```
+2. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+3. Run the dashboard:
+```bash
+streamlit run app/streamlit_app.py
+```
 
-##  Frontend & Integration
 
-### UI Features
-***Global Interactive Map**: A world overview of the House Price Index using Plotly Choropleth.
-* **Advanced Filtering**: Integrated a **Surface Area Slider** in the sidebar. 
-    * *Note:* This feature is currently in "UI-Ready" mode.The logic is fully implemented to filter data once the `Surface` attribute is integrated into the core dataset.
-* **Live Currency Conversion**: Integration of a REST API to convert housing indices from USD to EUR in real-time.
+## 🧪 Quality & Best Practices
+- Unit Testing: We use pytest to ensure the reliability of our analytical calculations. 
+  Run tests with  ```bash python -m pytest.```
+- Robustness: Implementation of Type Hints, Docstrings, and Logging to meet professional software standards.
+- Resilience: The API client includes timeout management and error handling for external service interruptions.
 
-### Quality & Integration
-* **Project Structure**: Organized the repository into `src/` (logic), `app/` (UI), and `data/` folders[cite: 1, 3].
-**Robustness**: Implemented `pytest` for calculating analytics and handled library compatibility issues (e.g., NumPy < 2.0.0).
-***Containerization**: Configured the `Dockerfile` and `compose.yml` to launch the Streamlit dashboard on port 8501.
+
+###📂 Project Structure: 
+world-real-estate-app/
+├── app/                # Streamlit UI 
+├── src/                # Business logic & API client 
+├── data/               # Raw and Processed CSV files 
+├── tests/              # Unit tests (Pytest) 
+├── Dockerfile          # Container configuration
+└── compose.yml         # Service orchestration
+
+
+## NB : 
+#### 📊 UI Innovation: Dynamic Feature Simulation
+
+To demonstrate the full potential of the dashboard's filtering capabilities, we implemented a dynamic data enrichment layer:
+
+- Synthetic Attribute Generation: Since the original dataset lacked specific granular details, we utilized NumPy to dynamically generate Surface (m²) and Rooms columns upon loading.
+
+- Advanced Cross-Filtering: This enables real-time interaction where users can filter global indices based on property size and room count.
+
+- Purpose: This serves as a Proof of Concept (PoC), showing that the frontend logic is ready to handle multi-dimensional data as soon as the backend provides it.
+
+
+
+

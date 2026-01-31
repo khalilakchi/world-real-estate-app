@@ -4,6 +4,6 @@ services:
     ports:
       - "8501:8501"
     volumes:
-      - ./data:/app/data  # Ton dossier local 'data' est monté dans '/app/data'
+      - ./data:/app/data  # dossier local 'data' est monté dans '/app/data'
     environment:
-      - DATA_PATH=/app/data/raw/global_housing_market_extended.csv
+     - DATA_PATH=/app/data/processed/global_housing_processed.csv
